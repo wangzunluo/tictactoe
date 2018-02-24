@@ -7,7 +7,7 @@ Created on Sat Feb 24 13:36:07 2018
 
 from flask import Flask, render_template,request
 playerNumber = 0
-gameBoard = {'X': [], 'O': []}
+gameBoard = [['N','N','N'],['N','N','N'],['N','N','N']]
 
 def checkWon(gameBoard):
     return False
@@ -31,11 +31,15 @@ def displayGame(gameName):
         
     else:
         return('wtf u doin here bro')
-#@app.route("/TTT.html/<pnum>/<row>/<col>")
-#def addPlay(pnum,row,col):
-#    gameBoard{pnum}.append([int(row),int(col)])
-#    won = checkWon(gameBoard)
-#    if(won):
-#        return(render_template('TTT_won.html',pnum = pnum))
-#    else:
-#        
+@app.route("/TTT.html/<pnum>/<row>/<col>")
+def addPlay(pnum,row,col):
+    gameBoard[row][col] = pnum
+    won = checkWon(gameBoard)
+    if(won):
+        return(render_template('TTT_won.html',pnum = pnum))
+    else:
+        return(render_template('TTT_won.html',pnum = pnum))
+@app.route("/end")
+def end():
+    return(render_template('endpage.html'))
+        
