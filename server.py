@@ -4,18 +4,22 @@ Created on Sat Feb 24 13:36:07 2018
 
 @author: Lucas
 """
-
+from tttFunctions import *
 from flask import Flask, render_template,request
+global playerNumber
+global gameBoard
 playerNumber = 0
 gameBoard = [['','',''],['','',''],['','','']]
 
-def checkWon(gameBoard):
-    return False
 
 app = Flask(__name__, template_folder="./Templates")
 @app.route("/")
 def chooseGame():
     print(request.url)
+    global playerNumber
+    global gameBoard
+    playerNumber = 0
+    gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
 @app.route("/game/<gameName>")
 def displayGame(gameName):
@@ -48,16 +52,18 @@ def addPlay(pnum,row,col):
     tr = gameBoard[0][2]
     ml = gameBoard[1][0]
     mm = gameBoard[1][1]
-    mr = gameBoard[1][2]
     bl = gameBoard[2][0]
+    mr = gameBoard[1][2]
     bm = gameBoard[2][1]
     br = gameBoard[2][2]
-    won = checkWon(gameBoard)
-    if(won):
-                    return(render_template('TTT_won.html',pnum = "X",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+    stat = checkStatus(gameBoard,pnum,int(row),int(col))
+    if(stat[0]):
+        return(render_template('endpage.html', endMessage= "Xs WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+    elif(stat[1]):
+        return(render_template('endpage.html', endMessage= "Os WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+    elif(stat[2]):
+        return(render_template('endpage.html', endMessage= "Cat game",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
     else:
-                    return(render_template('TTT.html',pnum = "X",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
-@app.route("/end")
-def end():
-    return(render_template('endpage.html'))
+        return(render_template('TTT.html',pnum = pnum,tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+
         
