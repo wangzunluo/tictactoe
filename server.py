@@ -91,3 +91,6 @@ def resetGame():
     playerNumber = 0
     gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
+@app.route('/end')
+def testEnd():
+    return(render_template('endpage.html'))
