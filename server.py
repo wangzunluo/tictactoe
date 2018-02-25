@@ -72,7 +72,7 @@ def addPlay(pnum,row,col):
 @app.route('/update')
 def updateBoard():
     board = json.dumps(gameBoard)
-    return('polling.js',board)
+    return(board)
 @app.route("/ping")
 def ping():
     data = (subprocess.check_output(["ping", "-c3", "-q", "192.168.111.100"]))
