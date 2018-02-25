@@ -7,6 +7,8 @@ Created on Sat Feb 24 13:36:07 2018
 from tttFunctions import *
 import json
 from flask import Flask, render_template,request
+import subprocess
+app = Flask(__name__)
 global playerNumber
 global gameBoard
 playerNumber = 0
@@ -17,10 +19,7 @@ app = Flask(__name__, template_folder="./Templates")
 @app.route("/")
 def chooseGame():
     print(request.url)
-    global playerNumber
-    global gameBoard
-    playerNumber = 0
-    gameBoard = [['','',''],['','',''],['','','']]
+    
     return render_template('chooseGame.html')
 @app.route("/game/<gameName>")
 def displayGame(gameName):
@@ -73,4 +72,22 @@ def addPlay(pnum,row,col):
 @app.route('/update')
 def updateBoard():
     board = json.dumps(gameBoard)
-    return(board)
+    return('polling.js',board)
+@app.route("/ping")
+def ping():
+    data = (subprocess.check_output(["ping", "-c3", "-q", "192.168.111.100"]))
+    data_crap = data.split('\n')
+    # data = data.strip(data_crap[0])
+    # data = data.strip(data_crap[1])
+    # data = data.strip(data_crap[2])
+    # data2 = data.strip(data_crap[3])
+    return data_crap[3]
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
+@app.route('/main')
+def resetGame():
+    global playerNumber
+    global gameBoard
+    playerNumber = 0
+    gameBoard = [['','',''],['','',''],['','','']]
+    return render_template('chooseGame.html')
