@@ -4,7 +4,7 @@ def checkHorizontal(board, user, x, y):
       if not board[x][cell] == 'X':
         return False
     return True
-  else
+  else:
     for cell in board[x]:
       if not board[x][cell] == 'Y':
         return False
@@ -15,7 +15,7 @@ def checkVertical(board, user, x, y):
       if not board[row][y] == 'X':
         return False
     return True
-  else
+  else:
     for row in board:
       if not board[row][y] == 'Y':
         return False
