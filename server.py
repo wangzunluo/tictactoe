@@ -59,7 +59,7 @@ def addPlay(pnum,row,col):
     mr = gameBoard[1][2]
     bm = gameBoard[2][1]
     br = gameBoard[2][2]
-    stat = checkStatus(gameBoard,pnum,int(row),int(col))
+    stat = fullCheck(gameBoard)
     if(stat[0]):
         return(render_template('endpage.html', endMessage= "Xs WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
     elif(stat[1]):
@@ -91,3 +91,7 @@ def resetGame():
     playerNumber = 0
     gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
+@app.route('/end')
+def endCheck():
+    vals = [gameBoard,checkStatus(gameBoard)]
+    return()
