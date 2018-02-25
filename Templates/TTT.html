@@ -7,7 +7,7 @@
       padding:10px;
     }
 
-    .grid-container > button {
+    .grid-container > a {
       text-align: center;
       padding: 20px;
       font-size: 30px;
@@ -29,15 +29,15 @@
   <h1 style="text-align: center">TicTacToe</h1>
 
   <div class="grid-container">
-    <button class="top right" >X</button>
-    <button class="top right" >X</button>
-    <button class="top">X</button>
-    <button class="top right">X</button>
-    <button class="top right">X</button>
-    <button class="top">X</button>
-    <button class="right">X</button>
-    <button class="right">X</button>
-    <button >X</button>
+    <a href="/TTT/{{pnum}}/0/0" class="top right">{{}}</button>
+    <a href="/TTT/{{pnum}}/0/1" class="top right">{{}}</button>
+    <a href="/TTT/{{pnum}}/0/2" class="top" >{{}}</button>
+    <a href="/TTT/{{pnum}}/1/0" class="top right">{{}}</button>
+    <a href="/TTT/{{pnum}}/1/1" class="top right">{{}}</button>
+    <a href="/TTT/{{pnum}}/1/2" class="top">{{}}</button>
+    <a href="/TTT/{{pnum}}/2/0" class="right">{{}}</button>
+    <a href="/TTT/{{pnum}}/2/1" class="right">{{}}</button>
+    <a href="/TTT/{{pnum}}/2/2" >{{}}</button>
   </div>
 
   <p>Player {{pnum}}: O  Score: 99</p>
