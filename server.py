@@ -71,7 +71,8 @@ def addPlay(pnum,row,col):
 
 @app.route('/update')
 def updateBoard():
-    board = json.dumps(gameBoard)
+    vals = [gameBoard,fullCheck(gameBoard)]
+    board = json.dumps(vals)
     return(board)
 @app.route("/ping")
 def ping():
@@ -91,12 +92,20 @@ def resetGame():
     playerNumber = 0
     gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
-@app.route('/end')
-<<<<<<< HEAD
-def endCheck():
-    vals = [gameBoard,checkStatus(gameBoard)]
-    return()
-=======
-def testEnd():
-    return(render_template('endpage.html'))
->>>>>>> fbb8e4d361d698f1d84ed1b6016b5339594e1208
+@app.route('/end/<pnum>)
+def testEnd(pnum):
+    tl = gameBoard[0][0]
+    tm = gameBoard[0][1]
+    tr = gameBoard[0][2]
+    ml = gameBoard[1][0]
+    mm = gameBoard[1][1]
+    bl = gameBoard[2][0]
+    mr = gameBoard[1][2]
+    bm = gameBoard[2][1]
+    br = gameBoard[2][2]
+    if(pnum == 'X"):
+        return(render_template('endpage.html', endMessage= "Xs WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+    elif(pnum == 'O'):
+        return(render_template('endpage.html', endMessage= "Os WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+    else:
+        return(render_template('endpage.html', endMessage= "Cat game",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
