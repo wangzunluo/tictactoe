@@ -21,35 +21,16 @@ def checkVertical(board, user, x, y):
         return False
     return True
 def checkDiagonal(board, user, x, y):
-  if x == 0:
-    if y == 0:
-      for i in range(1):
-        if not board[i][i] == board[i+1][i+1]:
-          return False
-      return True
-    else:
-      if not board[0][2] == board[1][1]:
-        return False
-      elif not board[2][0] == board[1][1]:
-        return False
-      return True
-  elif x == 2:
-    if y == 0:
-      if not board[0][2] == board[1][1]:
-        return False
-      elif not board[2][0] == board[1][1]:
-        return False
-      return True
-    else:
-      for i in range(1):
-        if not board[i][i] == board[i+1][i+1]:
-          return False
-      return True
-  else:
-    for i in range(1):
-      if not board[i][i] == board[i+1][i+1]:
-        return False
-    return True
+
+  for i in range(2):
+    if not (board[i][i] == user):
+      return False
+  
+  for i in range(2):
+    if not (board[2-i][i] == user):
+      return False
+
+  return True
 
 def checkFull(board):
   for row in board:
