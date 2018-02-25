@@ -5,6 +5,7 @@ Created on Sat Feb 24 13:36:07 2018
 @author: Lucas
 """
 from tttFunctions import *
+import json
 from flask import Flask, render_template,request
 global playerNumber
 global gameBoard
@@ -35,12 +36,15 @@ def displayGame(gameName):
         bl = gameBoard[2][0]
         bm = gameBoard[2][1]
         br = gameBoard[2][2]
+        board = json.dumps(gameBoard)
         if(playerNumber == 1):
             return(render_template('TTT.html',pnum = "X",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
         else:
                         return(render_template('TTT.html',pnum = "O",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
     elif(gameName == 'BattleShip'):
         return('We arent there yet bby')
+    elif(gameName == 'polling.js'):
+        return render_template('polling.js',board = board)
         
     else:
         return('wtf u doin here bro')
@@ -66,4 +70,7 @@ def addPlay(pnum,row,col):
     else:
         return(render_template('TTT.html',pnum = pnum,tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
 
-        
+@app.route('/update')
+def updateBoard():
+    board = json.dumps(gameBoard)
+    return(board)
