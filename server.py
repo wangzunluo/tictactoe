@@ -44,7 +44,7 @@ def displayGame(gameName):
     elif(gameName == 'BattleShip'):
         return('We arent there yet bby')
     elif(gameName == 'polling.js'):
-        return render_template('polling.js',board = board)
+        return render_template('polling.js')
         
     else:
         return('wtf u doin here bro')
