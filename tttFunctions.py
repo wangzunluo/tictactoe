@@ -20,18 +20,13 @@ def checkVertical(board, user, x, y):
       if not row[y] == 'O':
         return False
     return True
+
 def checkDiagonal(board, user, x, y):
-
-  for i in range(2):
-    if not (board[i][i] == user):
-      return False
-  
-  for i in range(2):
-    if not (board[2-i][i] == user):
-      return False
-
-  return True
-
+  if (board[0][0] == user) and (board[1][1] == user) and (board[2][2] == user):
+    return True
+  if (board[0][2] == user) and (board[1][1] == user) and (board[2][0] == user):
+    return True
+  return False
 def checkFull(board):
   for row in board:
     for cell in row:
@@ -77,7 +72,3 @@ def checkStatus(board, user, x, y):
     result[2] = True
     return result
   return result
-
-gameboard = [["X","X","X"],['','',''],['','','']]
-
-print(checkStatus(gameboard,"X", 0,2))
