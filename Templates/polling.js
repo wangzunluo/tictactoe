@@ -1,5 +1,17 @@
 function updateBoard(boardState) {
   let gameOver = boardState[1]
+  if (gameOver[0]) {
+    window.location = "/end/X"
+    return
+  }
+  else if (gameOver[1]) {
+    window.location = "/end/O"
+    return
+  }
+  else if (gameOver[2]) {
+    window.location = "/end/C"
+    return
+  }
   let board = document.getElementById("board")
   let elements = board.children
   let count = 0;
