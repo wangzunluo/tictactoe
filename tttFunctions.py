@@ -12,12 +12,12 @@ def checkHorizontal(board, user, x, y):
 def checkVertical(board, user, x, y):
   if user == 'X':
     for row in board:
-      if not row == 'X':
+      if not row[y] == 'X':
         return False
     return True
   else:
     for row in board:
-      if not row == 'O':
+      if not row[y] == 'O':
         return False
     return True
 def checkDiagonal(board, user, x, y):
@@ -79,21 +79,24 @@ def checkStatus(board, user, x, y):
   isEdge = checkEdge(board, x, y)
   result = [False,False,False]
   if(user == 'X'):
-    user = 0
+    tuser = 0
   else:
-    user = 1
-  
+    tuser = 1
   if not isEdge:
     if checkDiagonal(board, user, x, y):
-      result[user] = True
+      result[tuser] = True
       return result
   if checkHorizontal(board, user, x, y):
-    result[user] = True
+    result[tuser] = True
     return result
   if checkVertical(board, user, x, y):
-    result[user] = True
+    result[tuser] = True
     return result
   if checkFull(board):
     result[2] = True
     return result
   return result
+
+gameboard = [["X","X","X"],['','',''],['','','']]
+
+print(checkStatus(gameboard,"X", 0,2))
