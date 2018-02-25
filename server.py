@@ -8,12 +8,15 @@ from tttFunctions import *
 import json
 from flask import Flask, render_template,request
 import subprocess
+import matplotlib.pyplot as plt
+import numpy as np
 app = Flask(__name__)
 global playerNumber
 global gameBoard
 playerNumber = 0
 gameBoard = [['','',''],['','',''],['','','']]
-
+global pingArray
+pingArray = []
 def parseSummary(summary):
     splitSummary = summary.split(" = ")
     data = splitSummary[0].split("/")
@@ -88,6 +91,11 @@ def ping():
     parsedStrings = parseSummary(data)
     data = parsedStrings[0]
     values = parsedStrings[1]
+    if(len(pingArray) < 20):
+        pingArray.append(data[1])
+    else:
+        pingArray.pop(1)
+        pingArray.append(data[1])
     return render_template("pingpage.html", rtm = data[0], 
     rtmd = values[0], avg = data[1], avgv = values[1], max = data[2], 
     maxv = values[2], sd = data[3], sdv = values[3])
@@ -115,3 +123,12 @@ def testEnd(pnum):
         return(render_template('endpage.html', endMessage= "Os WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
     else:
         return(render_template('endpage.html', endMessage= "Cat game",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
+@app.route('/pingImage')
+def graphPing():
+    time = np.linspace(-100,0,20)
+    plt.plot(time,pingArray)
+    plt.title('Average Ping Over Time')
+    plt.xlabel('Time ago(s)')
+    plt.ylabel('Avg Ping')
+    plt.savefig('pinggraph.png')
+    return('pinggraph.png')
