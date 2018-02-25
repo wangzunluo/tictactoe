@@ -1,23 +1,23 @@
 def checkHorizontal(board, user, x, y):
   if user == 'X':
     for cell in board[x]:
-      if not board[x][cell] == 'X':
+      if not cell == 'X':
         return False
     return True
   else:
     for cell in board[x]:
-      if not board[x][cell] == 'Y':
+      if not cell == 'O':
         return False
     return True
 def checkVertical(board, user, x, y):
   if user == 'X':
     for row in board:
-      if not board[row][y] == 'X':
+      if not row == 'X':
         return False
     return True
   else:
     for row in board:
-      if not board[row][y] == 'Y':
+      if not row == 'O':
         return False
     return True
 def checkDiagonal(board, user, x, y):
@@ -54,7 +54,7 @@ def checkDiagonal(board, user, x, y):
 def checkFull(board):
   for row in board:
     for cell in row:
-      if not board[row][cell]:
+      if not cell:
         return False
   return True
 
