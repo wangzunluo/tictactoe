@@ -54,7 +54,7 @@ def checkDiagonal(board, user, x, y):
 def checkFull(board):
   for row in board:
     for cell in row:
-      if not board[row][cell]
+      if not board[row][cell]:
         return False
   return True
 
@@ -87,7 +87,7 @@ def checkStatus(board, user, x, y):
     if checkDiagonal(board, user, x, y):
       result[user] = True
       return result
-  if user = checkHorizontal(board, user, x, y):
+  if checkHorizontal(board, user, x, y):
     result[user] = True
     return result
   if checkVertical(board, user, x, y):
@@ -96,3 +96,4 @@ def checkStatus(board, user, x, y):
   if checkFull(board):
     result[2] = True
     return result
+  return result
