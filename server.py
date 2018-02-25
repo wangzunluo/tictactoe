@@ -7,7 +7,7 @@ Created on Sat Feb 24 13:36:07 2018
 
 from flask import Flask, render_template,request
 playerNumber = 0
-gameBoard = [['N','N','N'],['N','N','N'],['N','N','N']]
+gameBoard = [['','',''],['','',''],['','','']]
 
 def checkWon(gameBoard):
     return False
@@ -23,7 +23,7 @@ def displayGame(gameName):
         global playerNumber
         playerNumber += 1
         if(playerNumber == 1):
-            return(render_template('TTT.html',pnum = 'X'))
+            return(render_template('TTT.html',pnum = 'X',))
         else:
             return(render_template('TTT.html',pnum = 'O'))
     elif(gameName == 'BattleShip'):
