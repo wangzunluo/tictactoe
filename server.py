@@ -19,7 +19,6 @@ app = Flask(__name__, template_folder="./Templates")
 @app.route("/")
 def chooseGame():
     print(request.url)
-    
     return render_template('chooseGame.html')
 @app.route("/game/<gameName>")
 def displayGame(gameName):
@@ -35,7 +34,6 @@ def displayGame(gameName):
         bl = gameBoard[2][0]
         bm = gameBoard[2][1]
         br = gameBoard[2][2]
-        board = json.dumps(gameBoard)
         if(playerNumber == 1):
             return(render_template('TTT.html',pnum = "X",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
         else:
@@ -83,8 +81,6 @@ def ping():
     # data = data.strip(data_crap[2])
     # data2 = data.strip(data_crap[3])
     return data_crap[3]
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
 @app.route('/main')
 def resetGame():
     global playerNumber
@@ -92,7 +88,7 @@ def resetGame():
     playerNumber = 0
     gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
-@app.route('/end/<pnum>)
+@app.route('/end/<pnum>')
 def testEnd(pnum):
     tl = gameBoard[0][0]
     tm = gameBoard[0][1]
@@ -103,7 +99,7 @@ def testEnd(pnum):
     mr = gameBoard[1][2]
     bm = gameBoard[2][1]
     br = gameBoard[2][2]
-    if(pnum == 'X"):
+    if(pnum == 'X'):
         return(render_template('endpage.html', endMessage= "Xs WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
     elif(pnum == 'O'):
         return(render_template('endpage.html', endMessage= "Os WON!!!!!!!",tl=tl,tm=tm,tr=tr,ml=ml,mm=mm,mr=mr,bl=bl,bm=bm,br=br))
