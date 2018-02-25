@@ -51,24 +51,44 @@ def checkEdge(board, x, y):
     else:
       return False
 
-def checkStatus(board, user, x, y):
-  isEdge = checkEdge(board, x, y)
-  result = [False,False,False]
-  if(user == 'X'):
-    tuser = 0
+def checkStatus(board, user):
+  x = [0,1,2]
+  y = [0,1,2]
+  for i in range(2):
+    if checkHorizontal(board, user, x[i], y[i]):
+      return True
+    elif checkVertical(board, user, x[i], y[i]):
+      return True
+    elif checkDiagonal(board, user, x[i], y[i]):
+      return True
+  return False
+
+def fullCheck(board):
+  if checkStatus(board,"X"):
+    return [True, False, False]
+  elif checkStatus(board, "O"):
+    return [False, True, False]
+  elif checkFull(board):
+    return [False, False, True]
   else:
-    tuser = 1
-  if not isEdge:
-    if checkDiagonal(board, user, x, y):
-      result[tuser] = True
-      return result
-  if checkHorizontal(board, user, x, y):
-    result[tuser] = True
-    return result
-  if checkVertical(board, user, x, y):
-    result[tuser] = True
-    return result
-  if checkFull(board):
-    result[2] = True
-    return result
-  return result
+    return [False, False, False]
+  # isEdge = checkEdge(board, x, y)
+  # result = [False,False,False]
+  # if(user == 'X'):
+  #   tuser = 0
+  # else:
+  #   tuser = 1
+  # if not isEdge:
+  #   if checkDiagonal(board, user, x, y):
+  #     result[tuser] = True
+  #     return result
+  # if checkHorizontal(board, user, x, y):
+  #   result[tuser] = True
+  #   return result
+  # if checkVertical(board, user, x, y):
+  #   result[tuser] = True
+  #   return result
+  # if checkFull(board):
+  #   result[2] = True
+  #   return result
+  # return result

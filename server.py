@@ -92,6 +92,11 @@ def resetGame():
     gameBoard = [['','',''],['','',''],['','','']]
     return render_template('chooseGame.html')
 @app.route('/end')
+<<<<<<< HEAD
 def endCheck():
     vals = [gameBoard,checkStatus(gameBoard)]
     return()
+=======
+def testEnd():
+    return(render_template('endpage.html'))
+>>>>>>> fbb8e4d361d698f1d84ed1b6016b5339594e1208
