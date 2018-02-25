@@ -26,9 +26,10 @@
   </style>
 </head>
 <body>
+  <script src="/game/polling.js"></script>
   <h1 style="text-align: center">TicTacToe</h1>
 
-  <div class="grid-container">
+  <div class="grid-container" id="board">
     <a href="/TTT/{{pnum}}/0/0" class="top right">{{tl}}</a>
     <a href="/TTT/{{pnum}}/0/1" class="top right">{{tm}}</a>
     <a href="/TTT/{{pnum}}/0/2" class="top" >{{tr}}</a>
@@ -40,8 +41,8 @@
     <a href="/TTT/{{pnum}}/2/2" >{{br}}</a>
   </div>
 
-  <h3>Player {{pnum}}</h3>
+  <h3 id="player">Player {{pnum}}</h3>
 
   <a href="/end">End Page</button>
-  <a href="/">Main Menu</button>
+  <a href="/main">Main Menu</button>
 </body>
