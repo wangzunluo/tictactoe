@@ -23,11 +23,7 @@ def displayGame(gameName):
         global playerNumber
         playerNumber += 1
         if(playerNumber == 1):
-<<<<<<< HEAD
             return(render_template('TTT.html',pnum = "X"))
-=======
-            return(render_template('TTT.html',pnum = 'X',))
->>>>>>> b9addafc7f24fd4787df8202477b7fb98785408b
         else:
             return(render_template('TTT.html',pnum = "O"))
     elif(gameName == 'BattleShip'):
