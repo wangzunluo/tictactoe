@@ -12,7 +12,7 @@ gameBoard = [['N','N','N'],['N','N','N'],['N','N','N']]
 def checkWon(gameBoard):
     return False
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="./Templates")
 @app.route("/")
 def chooseGame():
     print(request.url)
