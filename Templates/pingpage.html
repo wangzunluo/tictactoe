@@ -27,17 +27,6 @@
   </style>
 </head>
 <body>
-  <script>
-    function sendRequest() {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() { 
-          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-              window.open(xmlHttp.responseText)
-      }
-      xmlHttp.open("GET", "/pingImage", true); // true for asynchronous 
-      xmlHttp.send(null);
-    }  
-  </script>
 
   <div class="grid-container">
     <div></div>
@@ -57,5 +46,5 @@
   </div>
 
   <a href="/main">Main Menu</button>
-  <button onclick="sendRequest()">Open Graph</button>
+
 </body>
